@@ -1,9 +1,9 @@
-import { Text, View } from "react-native";
+import { Text, View } from 'react-native'
 
 export default function Login() {
   return (
-    <View>
-      <Text>Login</Text>
+    <View className="flex-1 items-center justify-center">
+      <Text className="">Login</Text>
     </View>
   )
 }
