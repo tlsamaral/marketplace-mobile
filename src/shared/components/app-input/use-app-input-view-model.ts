@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noConfusingVoidType: explanation */
 import { useRef, useState } from 'react'
 import type { BlurEvent, FocusEvent, TextInput } from 'react-native'
 import { colors } from '../../../styles/colors'
