@@ -1,5 +1,4 @@
 import { Ionicons } from '@expo/vector-icons'
-import { FC } from 'react'
 import {
   Pressable,
   Text,
@@ -28,6 +27,7 @@ export function AppInput({
   containerClassName,
   value,
   isError,
+  isDisabled,
   secureTextEntry,
   onBlur,
   onFocus,
@@ -36,7 +36,17 @@ export function AppInput({
   error,
   ...textInputProps
 }: AppInputProps) {
-  const {} = useAppInputViewModel({
+  const {
+    getIconColor,
+    handleBlur,
+    handleFocus,
+    handleWrapperPress,
+    handlePasswordToggle,
+    handleTextChange,
+    inputRef,
+    showPassword,
+    isFocused,
+  } = useAppInputViewModel({
     error,
     onBlur,
     onFocus,
@@ -45,23 +55,53 @@ export function AppInput({
     onChangeText,
     secureTextEntry,
     value,
+    isDisabled,
   })
 
-  const styles = appInputVariants({})
+  const styles = appInputVariants({
+    isFocused,
+  })
 
   return (
     <View className={styles.container({ className: containerClassName })}>
       <Text className={styles.label()}>{label}</Text>
 
       <Pressable className={styles.wrapper()}>
-        <Ionicons name="person" size={22} />
+        {leftIcon && (
+          <Ionicons
+            name={leftIcon}
+            className="mr-3"
+            color={getIconColor()}
+            size={22}
+          />
+        )}
 
-        <TextInput className={styles.input()} {...textInputProps} />
+        <TextInput
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          className={styles.input()}
+          onChangeText={handleTextChange}
+          value={value}
+          secureTextEntry={showPassword}
+          {...textInputProps}
+        />
 
-        <TouchableOpacity>
-          <Ionicons name="eye-off-outline" size={22} />
-        </TouchableOpacity>
+        {secureTextEntry && (
+          <TouchableOpacity activeOpacity={0.7} onPress={handlePasswordToggle}>
+            <Ionicons
+              name={showPassword ? 'eye-outline' : 'eye-off-outline'}
+              size={22}
+            />
+          </TouchableOpacity>
+        )}
       </Pressable>
+
+      {error && (
+        <Text className={styles.error()}>
+          <Ionicons name="alert-circle-outline" className="mr-2" size={16} />
+          {error}
+        </Text>
+      )}
     </View>
   )
 }
