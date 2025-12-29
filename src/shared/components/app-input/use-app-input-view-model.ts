@@ -47,6 +47,12 @@ export const useAppInputViewModel = ({
     onBlur?.(event)
   }
 
+  const handleTextChange = (text: string) => {
+    if (mask) {
+      onChangeText?.(mask(text) || '')
+    }
+  }
+
   const getIconColor = () => {
     if (isFocused) {
       return colors['purple-base']
@@ -71,11 +77,13 @@ export const useAppInputViewModel = ({
     handleWrapperPress,
     inputRef,
     isDisabled,
+    isFocused,
     isError,
     showPassword,
     secureTextEntry,
     value,
     mask,
     onChangeText,
+    handleTextChange,
   }
 }
