@@ -5,7 +5,6 @@ import { colors } from '../../../styles/colors'
 interface AppInputViewModelProps {
   isError?: boolean
   isDisabled?: boolean
-  error?: string
   secureTextEntry?: boolean
   onFocus?: (event: FocusEvent) => void
   onBlur?: (event: BlurEvent) => void
@@ -14,7 +13,6 @@ interface AppInputViewModelProps {
   value?: string
 }
 export const useAppInputViewModel = ({
-  error,
   isDisabled,
   isError,
   secureTextEntry,
@@ -56,12 +54,12 @@ export const useAppInputViewModel = ({
   }
 
   const getIconColor = () => {
-    if (isFocused) {
-      return colors['purple-base']
-    }
-
     if (isError) {
       return colors.danger
+    }
+
+    if (isFocused) {
+      return colors['purple-base']
     }
 
     if (value) {
