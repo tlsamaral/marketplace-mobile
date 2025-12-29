@@ -1,0 +1,24 @@
+import { Image, Text, View } from 'react-native'
+
+interface AuthFormHeaderProps {
+  title: string
+  subtitle: string
+}
+
+export function AuthFormHeader({ title, subtitle }: AuthFormHeaderProps) {
+  return (
+    <View className="items-center mb-8">
+      <Image
+        resizeMode="contain"
+        className="w-[80px] h-[60px] mb-8"
+        source={require('../../../assets/images/Logo.png')}
+      />
+
+      <Text className="text-center font-bold text-3xl mb-3 text-gray-500">
+        {title}
+      </Text>
+
+      <Text className="text-base text-gray-400">{subtitle}</Text>
+    </View>
+  )
+}
