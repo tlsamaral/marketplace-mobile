@@ -1,6 +1,7 @@
 import { router } from 'expo-router'
 import type { FC } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
+import { AppButton } from '../../shared/components/app-button'
 import { AppInputController } from '../../shared/components/app-input-controller'
 import { AuthFormHeader } from '../../shared/components/auth-form-header'
 import { KeyboardContainer } from '../../shared/components/keyboard-container'
@@ -42,6 +43,8 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({
         <TouchableOpacity onPress={() => router.push('/register')}>
           <Text>Registro</Text>
         </TouchableOpacity>
+
+        <AppButton />
       </View>
     </KeyboardContainer>
   )
