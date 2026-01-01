@@ -40,9 +40,9 @@ export function SelectionModal({
       </View>
 
       <View>
-        {options.map((option) => (
+        {options.map((option, index) => (
           <TouchableOpacity
-            key={option.text}
+            key={index}
             className={getButtonClass(option.variant || 'primary')}
             onPress={option.onPress}
           >
