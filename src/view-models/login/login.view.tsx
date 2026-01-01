@@ -44,7 +44,9 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({
           <Text>Registro</Text>
         </TouchableOpacity>
 
-        <AppButton />
+        <AppButton rightIcon="arrow-forward" variant="outlined">
+          Login
+        </AppButton>
       </View>
     </KeyboardContainer>
   )
