@@ -8,14 +8,15 @@ import { type ButtonVariants, buttonVariants } from './button.variants'
 
 interface AppButtonProps extends TouchableOpacityProps, ButtonVariants {
   leftIcon?: keyof typeof Ionicons.glyphMap
+  children: string
 }
 
-export function AppButton(props: AppButtonProps) {
+export function AppButton({ leftIcon, children, ...props }: AppButtonProps) {
   const styles = buttonVariants()
 
   return (
     <TouchableOpacity className={styles.base()} {...props}>
-      <Text>Entrar</Text>
+      <Text>{children}</Text>
     </TouchableOpacity>
   )
 }
