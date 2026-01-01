@@ -1,3 +1,4 @@
+import type { Ionicons } from '@expo/vector-icons'
 import {
   Text,
   TouchableOpacity,
@@ -5,7 +6,9 @@ import {
 } from 'react-native'
 import { type ButtonVariants, buttonVariants } from './button.variants'
 
-interface AppButtonProps extends TouchableOpacityProps, ButtonVariants {}
+interface AppButtonProps extends TouchableOpacityProps, ButtonVariants {
+  leftIcon?: keyof typeof Ionicons.glyphMap
+}
 
 export function AppButton(props: AppButtonProps) {
   const styles = buttonVariants()
