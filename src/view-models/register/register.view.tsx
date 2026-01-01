@@ -1,6 +1,7 @@
+import { Ionicons } from '@expo/vector-icons'
 import { router } from 'expo-router'
 import type { FC } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { AppButton } from '../../shared/components/app-button'
 import { AppInputController } from '../../shared/components/app-input-controller'
 import { AuthFormHeader } from '../../shared/components/auth-form-header'
@@ -11,6 +12,7 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>> = ({
   control,
   errors,
   onSubmit,
+  handleSelectAvatar,
 }) => {
   return (
     <KeyboardContainer>
@@ -19,6 +21,10 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>> = ({
           title="Crie sua conta"
           subtitle="Informe os seus dados pessoais e de acesso"
         />
+
+        <TouchableOpacity onPress={handleSelectAvatar}>
+          <Ionicons name="cloud-upload-outline" size={24} color="black" />
+        </TouchableOpacity>
 
         <AppInputController
           name="name"
