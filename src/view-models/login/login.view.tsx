@@ -46,7 +46,7 @@ export const LoginView: FC<ReturnType<typeof useLoginViewModel>> = ({
 
         <View className="flex-1 justify-end mt-10 pb-16">
           <Text className="text-base mb-4 text-gray-400">
-            Já tem uma conta?
+            Não tem uma conta?
           </Text>
           <AppButton
             variant="outlined"
