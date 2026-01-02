@@ -81,11 +81,11 @@ export const RegisterView: FC<ReturnType<typeof useRegisterViewModel>> = ({
 
         <View className="flex-1 justify-end mt-10 pb-16">
           <Text className="text-base mb-4 text-gray-400">
-            Não tem uma conta?
+            Já possui uma conta?
           </Text>
 
           <AppButton variant="outlined" onPress={() => router.push('/login')}>
-            Registro
+            Login
           </AppButton>
         </View>
       </ScrollView>
