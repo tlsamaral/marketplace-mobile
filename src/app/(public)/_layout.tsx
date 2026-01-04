@@ -3,8 +3,8 @@ import { useUserStore } from '../../shared/store/user-store'
 
 export default function PublicLayout() {
   const { user, token } = useUserStore()
-
-  if (user && token) return <Redirect href="/(private)/home" />
+  console.log(user)
+  if (user && token) return <Redirect href="/(private)/(tabs)/home" />
 
   return <Stack screenOptions={{ headerShown: false }} />
 }
