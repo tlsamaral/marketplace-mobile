@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios, { type AxiosInstance } from 'axios'
 import { Platform } from 'react-native'
+import { useUserStore } from '../store/user-store'
 
 const getBaseUrl = () => {
   return Platform.select({
@@ -97,6 +98,7 @@ export class MarketPlaceApiClient {
 
             return this.instance(originalRequest)
           } catch (error) {
+            this.handleUnauthorized()
             return Promise.reject(
               new Error('Sessão expirada, faça o login novamente'),
             )
@@ -112,6 +114,12 @@ export class MarketPlaceApiClient {
         }
       },
     )
+  }
+
+  private async handleUnauthorized() {
+    const { logout } = useUserStore.getState()
+    delete this.instance.defaults.headers.common.Authorization
+    logout()
   }
 }
 
