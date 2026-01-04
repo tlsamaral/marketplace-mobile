@@ -9,12 +9,11 @@ export const useLoginMutation = () => {
   const mutation = useMutation({
     mutationFn: (userData: LoginHttpParams) => authService.login(userData),
     onSuccess: (response) => {
-      alert('Login efetuado com sucesso')
-      // setSession({
-      //   user: response.user,
-      //   token: response.token,
-      //   refreshToken: response.refreshToken
-      // })
+      setSession({
+        user: response.user,
+        token: response.token,
+        refreshToken: response.refreshToken,
+      })
     },
     onError: (error) => {
       console.log(error)
