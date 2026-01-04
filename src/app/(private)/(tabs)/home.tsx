@@ -1,9 +1,5 @@
-import { Text, View } from 'react-native'
+import { HomeView } from '../../../view-models/home/home.view'
 
 export default function Home() {
-  return (
-    <View className="flex-1 items-center justify-center">
-      <Text>Home</Text>
-    </View>
-  )
+  return <HomeView />
 }
