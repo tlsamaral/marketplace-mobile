@@ -3,7 +3,7 @@ export interface ProductRequest {
     page: number
     perPage: number
   }
-  filters: {
+  filters?: {
     from: Date
     to: Date
     categoryIds: number[]
@@ -11,7 +11,7 @@ export interface ProductRequest {
     minValue: number
     maxValue: number
   }
-  sort: {
+  sort?: {
     averageRating: string
   }
 }
