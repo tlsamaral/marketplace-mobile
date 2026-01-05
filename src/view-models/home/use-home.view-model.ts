@@ -3,7 +3,7 @@ import { useProductInfiniteQuery } from '../../shared/queries/product/use-produc
 export const useHomeViewModel = () => {
   const {
     products,
-    error,
+    error: _,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
@@ -32,6 +32,7 @@ export const useHomeViewModel = () => {
     handleEndReached,
     isFetchingNextPage,
     isLoading,
+    isRefetching,
     hasNextPage,
     products,
   }
