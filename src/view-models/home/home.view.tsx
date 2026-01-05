@@ -1,6 +1,7 @@
 import type { FC } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, RefreshControl } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { colors } from '../../styles/colors'
 import { Footer } from './components/footer'
 import { HomeHeader } from './components/header'
 import { ProductCard } from './components/product-card'
@@ -13,6 +14,8 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
   hasNextPage,
   isFetchingNextPage,
   isLoading,
+  isRefetching,
+  handleRefresh,
 }) => {
   return (
     <SafeAreaView edges={['top']} className="flex-1">
@@ -35,6 +38,14 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
           />
         )}
         contentContainerClassName="px-[16px] pb-[120px]"
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefetching}
+            colors={[colors['purple-base']]}
+            tintColor={colors['purple-base']}
+            onRefresh={handleRefresh}
+          />
+        }
       />
     </SafeAreaView>
   )
