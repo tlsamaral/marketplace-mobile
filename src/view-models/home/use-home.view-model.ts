@@ -26,5 +26,13 @@ export const useHomeViewModel = () => {
     await handleLoadMore()
   }
 
-  return { handleLoadMore, handleRefresh, handleEndReached, products }
+  return {
+    handleLoadMore,
+    handleRefresh,
+    handleEndReached,
+    isFetchingNextPage,
+    isLoading,
+    hasNextPage,
+    products,
+  }
 }
