@@ -14,6 +14,7 @@ export const useProductInfiniteQuery = () => {
     isRefetching,
   } = useInfiniteQuery({
     queryKey: ['products'],
+    staleTime: 1000 * 60 * 1,
     queryFn: async ({ pageParam = 1 }) => {
       try {
         const response = await getProducts({
