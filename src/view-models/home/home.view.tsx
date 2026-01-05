@@ -8,6 +8,7 @@ import type { useHomeViewModel } from './use-home.view-model'
 
 export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
   products,
+  handleEndReached,
 }) => {
   return (
     <SafeAreaView edges={['top']} className="flex-1">
@@ -16,6 +17,7 @@ export const HomeView: FC<ReturnType<typeof useHomeViewModel>> = ({
         renderItem={({ item }) => <ProductCard product={item} />}
         keyExtractor={(item) => `product-list-item-${item.id}`}
         numColumns={2}
+        onEndReached={handleEndReached}
         columnWrapperStyle={{ justifyContent: 'space-between' }}
         ListHeaderComponent={() => (
           <>
