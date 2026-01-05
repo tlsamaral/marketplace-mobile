@@ -22,5 +22,9 @@ export const useHomeViewModel = () => {
     await refetch()
   }
 
-  return { handleLoadMore, handleRefresh, products }
+  const handleEndReached = async () => {
+    await handleLoadMore()
+  }
+
+  return { handleLoadMore, handleRefresh, handleEndReached, products }
 }
