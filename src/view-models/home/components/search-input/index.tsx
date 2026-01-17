@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import { AppInput } from '../../../../shared/components/app-input'
 import { useBottomSheetStore } from '../../../../shared/store/bottom-sheet-store'
 import { colors } from '../../../../styles/colors'
+import { Filter } from '../filter'
 
 export function SearchInput() {
   const { open } = useBottomSheetStore()
@@ -19,7 +20,7 @@ export function SearchInput() {
           className="ml-5 mt-5 items-center justify-center rounded-xl border-[1px] size-[48px] border-purple-base"
           onPress={() => {
             open({
-              content: <Text>O</Text>,
+              content: <Filter />,
             })
           }}
         >
