@@ -7,7 +7,7 @@ import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { colors } from '../../../styles/colors'
 import { useBottomSheetStore } from '../../store/bottom-sheet-store'
 
-export function AppBottomSheet() {
+export const AppBottomSheet = () => {
   const { content, close, isOpen, config } = useBottomSheetStore()
 
   const bottomSheetRef = useRef<BottomSheet>(null)
@@ -19,7 +19,10 @@ export function AppBottomSheet() {
 
   useEffect(() => {
     if (isOpen && content) {
-      bottomSheetRef.current?.snapToIndex(0)
+      console.log(isOpen, content)
+      requestAnimationFrame(() => {
+        bottomSheetRef.current?.snapToIndex(0)
+      })
     } else {
       bottomSheetRef.current?.close()
     }
@@ -34,27 +37,27 @@ export function AppBottomSheet() {
     [close],
   )
 
-  const renderBackdrop = useCallback(() => {
+  const renderBackdrop = useCallback((props: BottomSheetBackdropProps) => {
     return (
       <BottomSheetBackdrop
-        {...(config as BottomSheetBackdropProps)}
+        {...props}
         appearsOnIndex={0}
         disappearsOnIndex={-1}
         opacity={0.7}
         pressBehavior="close"
       />
     )
-  }, [config])
+  }, [])
 
   return (
     <BottomSheet
       ref={bottomSheetRef}
-      backdropComponent={renderBackdrop}
       backgroundStyle={{
         backgroundColor: colors.background,
         borderTopLeftRadius: 32,
         borderTopRightRadius: 32,
       }}
+      backdropComponent={renderBackdrop}
       enablePanDownToClose={config?.enablePanDownToClose ?? true}
       index={-1}
       animateOnMount
