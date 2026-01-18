@@ -5,24 +5,24 @@ import { useBottomSheetStore } from '../../../../shared/store/bottom-sheet-store
 import { colors } from '../../../../styles/colors'
 import { Filter } from '../filter'
 
-export function SearchInput() {
+export const SearchInput = () => {
   const { open } = useBottomSheetStore()
 
   return (
     <View className="mb-3 mt-6">
-      <Text className="text-2xl font-bold mt-6 mb-2">Explore produtos</Text>
-      <View className="flex-row items-center gap-4">
+      <Text className="text-2xl font-bold mt-6">Explore Produtos</Text>
+      <View className="flex-row">
         <View className="flex-1">
-          <AppInput leftIcon="search" className="text-lg" />
+          <AppInput
+            leftIcon="search"
+            returnKeyType="search"
+            className="text-lg flex-1"
+          />
         </View>
 
         <TouchableOpacity
-          className="ml-5 mt-5 items-center justify-center rounded-xl border-[1px] size-[48px] border-purple-base"
-          onPress={() => {
-            open({
-              content: <Filter />,
-            })
-          }}
+          onPress={() => open({ content: <Filter /> })}
+          className="ml-5 mt-6 items-center justify-center rounded-lg border size-[48px] border-purple-base"
         >
           <Ionicons
             name="filter-outline"

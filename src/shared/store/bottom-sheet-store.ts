@@ -1,18 +1,16 @@
+import type { ReactNode } from 'react'
 import { create } from 'zustand'
 
 interface BottomSheetConfig {
   snapPoints?: string[]
   enablePanDownToClose?: boolean
 }
+
 interface BottomSheetStore {
   isOpen: boolean
-  content: React.ReactNode | null
+  content: ReactNode | null
   config: BottomSheetConfig
-
-  open: (content: {
-    content: React.ReactNode
-    config?: BottomSheetConfig
-  }) => void
+  open: (content: { content: ReactNode; config?: BottomSheetConfig }) => void
   close: () => void
 }
 
@@ -21,19 +19,24 @@ const defaultConfig: BottomSheetConfig = {
   enablePanDownToClose: true,
 }
 
-export const useBottomSheetStore = create<BottomSheetStore>(() => ({
+export const useBottomSheetStore = create<BottomSheetStore>((set) => ({
   isOpen: false,
   content: null,
   config: defaultConfig,
   open: ({ content, config }) => {
-    return {
-      content,
+    set({
+      isOpen: true,
       config: {
         ...defaultConfig,
         ...config,
       },
-      isOpen: true,
-    }
+      content,
+    })
   },
-  close: () => ({ isOpen: false, content: null, config: defaultConfig }),
+  close: () =>
+    set({
+      isOpen: false,
+      content: null,
+      config: defaultConfig,
+    }),
 }))

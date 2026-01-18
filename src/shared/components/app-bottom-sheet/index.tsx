@@ -18,8 +18,8 @@ export const AppBottomSheet = () => {
   )
 
   useEffect(() => {
+    console.log(isOpen, content)
     if (isOpen && content) {
-      console.log(isOpen, content)
       requestAnimationFrame(() => {
         bottomSheetRef.current?.snapToIndex(0)
       })
@@ -27,6 +27,7 @@ export const AppBottomSheet = () => {
       bottomSheetRef.current?.close()
     }
   }, [isOpen, content])
+  console.log(isOpen, content)
 
   const handleSheetChanges = useCallback(
     (index: number) => {
