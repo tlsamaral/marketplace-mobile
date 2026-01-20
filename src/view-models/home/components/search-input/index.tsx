@@ -17,6 +17,7 @@ export const SearchInput = () => {
             leftIcon="search"
             returnKeyType="search"
             className="text-lg flex-1"
+            placeholder="O que deseja encontrar?"
           />
         </View>
 
