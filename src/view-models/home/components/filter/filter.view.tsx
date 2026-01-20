@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons'
+import Checkbox from 'expo-checkbox'
 import type { FC } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { AppButton } from '../../../../shared/components/app-button'
@@ -9,6 +10,12 @@ import type { useFilterViewModel } from './use-filter.view.model'
 export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
   categories,
   isLoading,
+  handleCategoryToggle,
+  handleValueMaxChange,
+  handleValueMinChange,
+  selectedCategories,
+  handleApplyFilters,
+  handleResetFilters,
 }) => {
   return (
     <View>
@@ -24,19 +31,21 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
 
       <View className="p-4 px-6">
         <Text className="font-semibold text-base text-gray-400">VALOR </Text>
-        <View className="flex-row mb-4 w-[100%]">
+        <View className="flex-row gap-4 mb-4 w-[100%]">
           <View className="flex-1">
             <AppInput
               placeholder="De"
               keyboardType="numeric"
               className="w-[90%]"
+              onChangeText={(value) => handleValueMinChange(+value)}
             />
           </View>
           <View className="flex-1">
             <AppInput
-              placeholder="De"
+              placeholder="Até"
               keyboardType="numeric"
               className="w-[90%]"
+              onChangeText={(value) => handleValueMaxChange(+value)}
             />
           </View>
         </View>
@@ -51,7 +60,14 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
               <TouchableOpacity
                 key={category.id}
                 className="flex-row items-center py-2"
+                onPress={() => handleCategoryToggle(category.id)}
               >
+                <Checkbox
+                  value={selectedCategories.includes(category.id)}
+                  onValueChange={() => handleCategoryToggle(category.id)}
+                  color={colors['purple-base']}
+                  className="mr-3 rounded-full"
+                />
                 <Text className="text-base text-gray-400">{category.name}</Text>
               </TouchableOpacity>
             ))}
@@ -60,11 +76,13 @@ export const FilterView: FC<ReturnType<typeof useFilterViewModel>> = ({
 
         <View className="flex-row gap-3 mt-4 mb-6">
           <View className="flex-1">
-            <AppButton variant="outlined">Limpar filtro</AppButton>
+            <AppButton variant="outlined" onPress={handleResetFilters}>
+              Limpar filtro
+            </AppButton>
           </View>
 
           <View className="flex-1">
-            <AppButton>Limpar filtro</AppButton>
+            <AppButton onPress={handleApplyFilters}>Filtrar</AppButton>
           </View>
         </View>
       </View>
