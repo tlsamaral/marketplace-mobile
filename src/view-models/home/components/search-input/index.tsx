@@ -1,11 +1,20 @@
 import { Ionicons } from '@expo/vector-icons'
+import type { FC } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { AppInput } from '../../../../shared/components/app-input'
 import { useBottomSheetStore } from '../../../../shared/store/bottom-sheet-store'
 import { colors } from '../../../../styles/colors'
 import { Filter } from '../filter'
 
-export const SearchInput = () => {
+interface SearchInputParams {
+  setSearchInputText: (text: string) => void
+  inputValue: string
+}
+
+export const SearchInput: FC<SearchInputParams> = ({
+  inputValue,
+  setSearchInputText,
+}) => {
   const { open } = useBottomSheetStore()
 
   return (
@@ -18,6 +27,8 @@ export const SearchInput = () => {
             returnKeyType="search"
             className="text-lg flex-1"
             placeholder="O que deseja encontrar?"
+            value={inputValue}
+            onChangeText={setSearchInputText}
           />
         </View>
 
