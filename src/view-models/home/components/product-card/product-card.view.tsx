@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons'
 import type { FC } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { AppPriceText } from '../../../../shared/components/app-price-text'
 import { colors } from '../../../../styles/colors'
 import type { useProductCardViewModel } from './use-product-card.view.model'
 
@@ -28,7 +29,11 @@ export const ProductCardView: FC<
         </Text>
 
         <View className="flex-row items-center justify-between">
-          <Text>R$ {product.value}</Text>
+          <AppPriceText
+            value={Number(product.value)}
+            classNameCurrency="text-small"
+            classNameValue="text-lg font-bold flex-1"
+          />
         </View>
       </View>
     </TouchableOpacity>
