@@ -1,5 +1,6 @@
 import { marketPlaceApiClient } from '../api/market-place'
 import type { ProductRequest } from '../interfaces/http/product'
+import type { GetProductDetailInterface } from '../interfaces/http/product-details'
 import type { ProductResponse } from '../interfaces/http/product-response'
 import type { ProductCategory } from '../interfaces/product'
 
@@ -15,6 +16,14 @@ export const getProducts = async (params: ProductRequest) => {
 export const getProductsCategories = async () => {
   const { data } = await marketPlaceApiClient.get<ProductCategory[]>(
     '/products/categories',
+  )
+
+  return data
+}
+
+export const getProductDetail = async (id: number) => {
+  const { data } = await marketPlaceApiClient.get<GetProductDetailInterface>(
+    `/products/${id}`,
   )
 
   return data
