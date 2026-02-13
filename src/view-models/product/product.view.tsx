@@ -6,7 +6,6 @@ import type { useProductViewModel } from './use-product.viewmodel'
 
 export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
   error,
-  isLoading,
   productDetails,
 }) => {
   if (error) {
@@ -18,7 +17,7 @@ export const ProductView: FC<ReturnType<typeof useProductViewModel>> = ({
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1 bg-background">
       <FlatList
         data={[]}
         renderItem={() => <></>}
